@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+
+
+    return 0;
+}
+
+
+void sortedInsert(stack<int> &stack, int num){
+    if(stack.empty() || (!stack.empty() && stack.top() < num)){  // ya toh stack empty ho ya fir empty na ho and and top of stack is lesss than number... tab push kardo number ko aur return
+        stack.push(num);
+        return;
+    }  
+    
+    int n= stack.top();  // whi top element alg nikal lia
+     stack.pop();
+    
+    // recursive call
+    sortedInsert(stack, num);
+    
+    stack.push(n);  // vaps daal rhe h nikale hue number ko
+    
+}
+
+void sortStack(stack<int> &stack)
+{
+	// Write code here.
+    if(stack.empty()){  // jab stack empty ho jae tab return kardo
+        return;
+    }
+    
+    int num=stack.top();  // top elemrnt alg nikal lia
+    stack.pop();
+    
+    sortStack(stack);  // recursive call 
+    
+    sortedInsert(stack, num);  // function call
+}
